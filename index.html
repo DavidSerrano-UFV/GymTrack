@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agenda personal de gimnasio para registrar y consultar entrenamientos por grupo muscular.">
+  <title>GymTrack | Agenda de gimnasio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="container header-content">
+
+      <button class="brand" id="brandButton" type="button" aria-label="Ir al inicio">
+        <span class="brand-mark">GT</span>
+
+        <span>
+          <strong>GymTrack</strong>
+          <small>Agenda de entrenamiento</small>
+        </span>
+      </button>
+
+      <div class="header-actions">
+
+    <a
+        href="rutinas.html"
+        class="routine-link"
+    >
+        Ver rutina
+    </a>
+
+
+    <a
+        href="comidas.html"
+        class="nutrition-link"
+    >
+        Comidas
+    </a>
+
+
+    <div
+        class="header-stat"
+        aria-label="Número total de entrenamientos registrados"
+    >
+
+        <span>
+            Total registros
+        </span>
+
+        <strong id="totalWorkouts">
+            0
+        </strong>
+
+    </div>
+
+</div>
+
+    </div>
+  </header>
+
+
+  <main class="container app-main">
+
+    <!-- PÁGINA PRINCIPAL -->
+    <section id="homeView" class="view" aria-labelledby="homeTitle">
+
+      <div class="hero">
+        <p class="eyebrow">TU PROGRESO, EN UN SOLO SITIO</p>
+
+        <h1 id="homeTitle">
+          Agenda personal de gimnasio
+        </h1>
+
+        <p>
+          Registra pesos, series, repeticiones y fechas.
+          Entra en un grupo muscular para consultar todo
+          tu historial de entrenamiento.
+        </p>
+      </div>
+
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">GRUPOS MUSCULARES</p>
+          <h2>¿Qué has entrenado?</h2>
+        </div>
+      </div>
+
+
+      <div id="muscleGrid" class="muscle-grid">
+
+        <button class="muscle-card" type="button" data-muscle="Pecho">
+
+          <span class="muscle-icon">
+            PE
+          </span>
+
+          <span class="muscle-info">
+            <strong>Pecho</strong>
+
+            <small>
+              <span class="muscle-count" data-count-for="Pecho">
+                0
+              </span>
+              registros
+            </small>
+          </span>
+
+          <span class="card-arrow" aria-hidden="true">
+            →
+          </span>
+
+        </button>
+
+
+        <button class="muscle-card" type="button" data-muscle="Espalda">
+
+          <span class="muscle-icon">
+            ES
+          </span>
+
+          <span class="muscle-info">
+            <strong>Espalda</strong>
+
+            <small>
+              <span class="muscle-count" data-count-for="Espalda">
+                0
+              </span>
+              registros
+            </small>
+          </span>
+
+          <span class="card-arrow" aria-hidden="true">
+            →
+          </span>
+
+        </button>
+
+
+        <button class="muscle-card" type="button" data-muscle="Bíceps">
+
+          <span class="muscle-icon">
+            BI
+          </span>
+
+          <span class="muscle-info">
+            <strong>Bíceps</strong>
+
+            <small>
+              <span class="muscle-count" data-count-for="Bíceps">
+                0
+              </span>
+              registros
+            </small>
+          </span>
+
+          <span class="card-arrow" aria-hidden="true">
+            →
+          </span>
+
+        </button>
+
+
+        <button class="muscle-card" type="button" data-muscle="Tríceps">
+
+          <span class="muscle-icon">
+            TR
+          </span>
+
+          <span class="muscle-info">
+            <strong>Tríceps</strong>
+
+            <small>
+              <span class="muscle-count" data-count-for="Tríceps">
+                0
+              </span>
+              registros
+            </small>
+          </span>
+
+          <span class="card-arrow" aria-hidden="true">
+            →
+          </span>
+
+        </button>
+
+
+        <button class="muscle-card" type="button" data-muscle="Hombro">
+
+          <span class="muscle-icon">
+            HO
+          </span>
+
+          <span class="muscle-info">
+            <strong>Hombro</strong>
+
+            <small>
+              <span class="muscle-count" data-count-for="Hombro">
+                0
+              </span>
+              registros
+            </small>
+          </span>
+
+          <span class="card-arrow" aria-hidden="true">
+            →
+          </span>
+
+        </button>
+
+
+        <button class="muscle-card" type="button" data-muscle="Pierna">
+
+          <span class="muscle-icon">
+            PI
+          </span>
+
+          <span class="muscle-info">
+            <strong>Pierna</strong>
+
+            <small>
+              <span class="muscle-count" data-count-for="Pierna">
+                0
+              </span>
+              registros
+            </small>
+          </span>
+
+          <span class="card-arrow" aria-hidden="true">
+            →
+          </span>
+
+        </button>
+
+        <!-- ABDOMEN -->
+<button class="muscle-card" type="button" data-muscle="Abdomen">
+
+  <span class="muscle-icon">
+    AB
+  </span>
+
+  <span class="muscle-info">
+    <strong>Abdomen</strong>
+
+    <small>
+      <span class="muscle-count" data-count-for="Abdomen">
+        0
+      </span>
+      registros
+    </small>
+  </span>
+
+  <span class="card-arrow" aria-hidden="true">
+    →
+  </span>
+
+</button>
+
+      </div>
+
+    </section>
+
+
+    <!-- VISTA DE UN GRUPO MUSCULAR -->
+    <section id="muscleView" class="view hidden" aria-labelledby="muscleTitle">
+
+      <button class="back-button" id="backButton" type="button">
+        ← Volver a grupos
+      </button>
+
+
+      <div class="muscle-view-header">
+
+        <div>
+
+          <p class="eyebrow">
+            HISTORIAL DE ENTRENAMIENTO
+          </p>
+
+          <h1 id="muscleTitle">
+            Pecho
+          </h1>
+
+          <p id="muscleSummary">
+            0 registros guardados
+          </p>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          id="addExerciseButton"
+          type="button"
+        >
+
+          <span aria-hidden="true">
+            ＋
+          </span>
+
+          Añadir ejercicio
+
+        </button>
+
+      </div>
+
+
+      <!-- AQUÍ SE GENERAN LOS EJERCICIOS -->
+      <div
+        id="exerciseHistory"
+        class="exercise-history"
+      ></div>
+
+
+      <!-- MENSAJE SI NO HAY EJERCICIOS -->
+      <div
+        id="emptyState"
+        class="empty-state hidden"
+      >
+
+        <div class="empty-icon">
+          +
+        </div>
+
+        <h2>
+          Aún no hay entrenamientos
+        </h2>
+
+        <p>
+          Registra tu primer ejercicio en este grupo muscular
+          para empezar a ver tu progreso.
+        </p>
+
+        <button
+          class="primary-button"
+          id="emptyAddButton"
+          type="button"
+        >
+          Añadir ejercicio
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FORMULARIO MODAL -->
+  <div
+    class="modal"
+    id="exerciseModal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modal-backdrop"
+      data-close-modal
+    ></div>
+
+
+    <section
+      class="modal-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+
+      <div class="modal-header">
+
+        <div>
+
+          <p
+            class="eyebrow"
+            id="modalMuscleLabel"
+          >
+            PECHO
+          </p>
+
+          <h2 id="modalTitle">
+            Añadir ejercicio
+          </h2>
+
+        </div>
+
+
+        <button
+          class="icon-button"
+          type="button"
+          data-close-modal
+          aria-label="Cerrar formulario"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="exerciseForm" novalidate>
+
+        <input
+          type="hidden"
+          id="editingId"
+        >
+
+
+        <div class="form-group form-group-full">
+
+          <label for="exerciseName">
+            Nombre del ejercicio
+          </label>
+
+          <input
+            id="exerciseName"
+            name="exerciseName"
+            type="text"
+            maxlength="80"
+            placeholder="Ej. Press banca"
+            autocomplete="off"
+            required
+          >
+
+          <small
+            class="field-error"
+            id="exerciseNameError"
+          ></small>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="weight">
+              Peso (kg)
+            </label>
+
+            <input
+              id="weight"
+              name="weight"
+              type="number"
+              min="0.1"
+              step="0.1"
+              placeholder="70"
+              inputmode="decimal"
+              required
+            >
+
+            <small
+              class="field-error"
+              id="weightError"
+            ></small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="sets">
+              Series
+            </label>
+
+            <input
+              id="sets"
+              name="sets"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="4"
+              inputmode="numeric"
+              required
+            >
+
+            <small
+              class="field-error"
+              id="setsError"
+            ></small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="reps">
+              Repeticiones
+            </label>
+
+            <input
+              id="reps"
+              name="reps"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="10"
+              inputmode="numeric"
+              required
+            >
+
+            <small
+              class="field-error"
+              id="repsError"
+            ></small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="workoutDate">
+              Fecha
+            </label>
+
+            <input
+              id="workoutDate"
+              name="workoutDate"
+              type="date"
+              required
+            >
+
+            <small
+              class="field-error"
+              id="workoutDateError"
+            ></small>
+
+          </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+          <button
+            class="secondary-button"
+            type="button"
+            data-close-modal
+          >
+            Cancelar
+          </button>
+
+          <button
+            class="primary-button"
+            type="submit"
+            id="saveExerciseButton"
+          >
+            Guardar ejercicio
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+  </div>
+
+
+  <!-- MENSAJES DE CONFIRMACIÓN -->
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script src="script.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    // Leemos el músculo que llega desde rutinas.html
+    // Ejemplo: index.html?muscle=Espalda
+    const params = new URLSearchParams(window.location.search);
+
+    const muscle = params.get("muscle");
+
+
+    // Si no viene ningún músculo en la URL,
+    // dejamos la página principal como siempre.
+    if (!muscle) {
+      return;
+    }
+
+
+    // Buscamos la tarjeta correspondiente al músculo.
+    const muscleCards =
+      document.querySelectorAll(".muscle-card");
+
+
+    const selectedCard =
+      Array.from(muscleCards).find(
+        (card) => card.dataset.muscle === muscle
+      );
+
+
+    // Si existe la tarjeta, hacemos exactamente
+    // lo mismo que si el usuario la hubiera pulsado.
+    if (selectedCard) {
+      selectedCard.click();
+    }
+
+  });
+</script>
+
+</body>
+</html>
