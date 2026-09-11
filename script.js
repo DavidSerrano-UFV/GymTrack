@@ -2,6 +2,7 @@
 
 
 const STORAGE_KEY = "gymTrackWorkoutsV1";
+const GOALS_STORAGE_KEY = "gymTrackGoalsV1";
 
 
 const MUSCLE_GROUPS = [
@@ -1476,21 +1477,32 @@ function compareWorkoutDatesDesc(
 // ==============================
 
 function normalizeExerciseName(
-  name
+    name
 ) {
 
-  return name
-
-    .trim()
-
-    .toLocaleLowerCase(
-      "es-ES"
+    return String(
+        name
     )
 
-    .replace(
-      /\s+/g,
-      " "
-    );
+        .trim()
+
+        .toLocaleLowerCase(
+            "es-ES"
+        )
+
+        .normalize(
+            "NFD"
+        )
+
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+
+        .replace(
+            /\s+/g,
+            " "
+        );
 
 }
 

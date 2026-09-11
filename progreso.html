@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Rachas, metas y progreso de entrenamiento en GymTrack."
+    >
+
+    <title>GymTrack | Progreso</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+    <header class="app-header">
+
+        <div class="container header-content">
+
+            <a
+                href="index.html"
+                class="brand"
+                style="text-decoration: none;"
+            >
+
+                <span class="brand-mark">
+                    GT
+                </span>
+
+                <span>
+
+                    <strong>
+                        GymTrack
+                    </strong>
+
+                    <small>
+                        Mi progreso
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <div class="header-actions progress-header-actions">
+
+                <a
+                    href="index.html"
+                    class="secondary-button"
+                    style="text-decoration: none;"
+                >
+                    Entrenamientos
+                </a>
+
+                <a
+                    href="rutinas.html"
+                    class="secondary-button"
+                    style="text-decoration: none;"
+                >
+                    Rutina
+                </a>
+
+                <a
+                    href="comidas.html"
+                    class="secondary-button"
+                    style="text-decoration: none;"
+                >
+                    Comidas
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container app-main progress-main">
+
+
+        <!-- CABECERA -->
+        <section class="progress-hero">
+
+            <div class="progress-hero-copy">
+
+                <p class="eyebrow">
+                    CONSTANCIA Y OBJETIVOS
+                </p>
+
+                <h1>
+                    Tu progreso
+                </h1>
+
+                <p>
+                    Sigue tu racha de entrenamiento y comprueba
+                    automáticamente cuánto te falta para alcanzar
+                    tus próximas metas.
+                </p>
+
+            </div>
+
+
+            <!-- RACHA -->
+            <article class="streak-card">
+
+                <div class="streak-flame">
+                    🔥
+                </div>
+
+                <strong id="currentStreak">
+                    0 días
+                </strong>
+
+                <span>
+                    Racha actual
+                </span>
+
+                <small id="todayStatus">
+                    Hoy pendiente
+                </small>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- ESTADÍSTICAS -->
+        <section class="progress-stats-grid">
+
+            <article class="progress-stat-card">
+
+                <span class="progress-stat-icon">
+                    🏆
+                </span>
+
+                <div>
+
+                    <span>
+                        Mejor racha
+                    </span>
+
+                    <strong id="bestStreak">
+                        0 días
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="progress-stat-card">
+
+                <span class="progress-stat-icon">
+                    📅
+                </span>
+
+                <div>
+
+                    <span>
+                        Días entrenados
+                    </span>
+
+                    <strong id="totalTrainingDays">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="progress-stat-card">
+
+                <span class="progress-stat-icon">
+                    🎯
+                </span>
+
+                <div>
+
+                    <span>
+                        Metas activas
+                    </span>
+
+                    <strong id="activeGoalsCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="progress-stat-card">
+
+                <span class="progress-stat-icon">
+                    ✅
+                </span>
+
+                <div>
+
+                    <span>
+                        Metas completadas
+                    </span>
+
+                    <strong id="completedGoalsCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- SEMANA -->
+        <section class="progress-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        ESTA SEMANA
+                    </p>
+
+                    <h2>
+                        Racha semanal
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="week-streak-card">
+
+                <div
+                    id="weekCalendar"
+                    class="week-calendar"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- METAS -->
+        <section class="progress-section">
+
+            <div class="section-heading progress-section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        OBJETIVOS PERSONALES
+                    </p>
+
+                    <h2>
+                        Mis metas
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="newGoalButton"
+                    type="button"
+                >
+                    ＋ Nueva meta
+                </button>
+
+            </div>
+
+
+            <div
+                id="goalsList"
+                class="goals-grid"
+            ></div>
+
+
+            <div
+                id="goalsEmptyState"
+                class="empty-state hidden"
+            >
+
+                <div class="empty-icon">
+                    🎯
+                </div>
+
+                <h2>
+                    Aún no tienes metas
+                </h2>
+
+                <p>
+                    Crea un objetivo de peso y GymTrack medirá
+                    automáticamente tu progreso.
+                </p>
+
+                <button
+                    class="primary-button"
+                    id="emptyNewGoalButton"
+                    type="button"
+                >
+                    Crear mi primera meta
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LOGROS -->
+        <section class="progress-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        HITOS
+                    </p>
+
+                    <h2>
+                        Logros
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="achievementsGrid"
+                class="achievements-grid"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- MODAL NUEVA META -->
+    <div
+        class="modal"
+        id="goalModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal-backdrop"
+            data-close-goal-modal
+        ></div>
+
+
+        <section class="modal-panel">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        NUEVO OBJETIVO
+                    </p>
+
+                    <h2>
+                        Crear meta
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="icon-button"
+                    type="button"
+                    data-close-goal-modal
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="goalForm"
+                novalidate
+            >
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="goalMuscleGroup">
+                            Grupo muscular
+                        </label>
+
+                        <select
+                            id="goalMuscleGroup"
+                            required
+                        >
+
+                            <option value="">
+                                Selecciona un grupo
+                            </option>
+
+                            <option value="Pecho">
+                                Pecho
+                            </option>
+
+                            <option value="Espalda">
+                                Espalda
+                            </option>
+
+                            <option value="Bíceps">
+                                Bíceps
+                            </option>
+
+                            <option value="Tríceps">
+                                Tríceps
+                            </option>
+
+                            <option value="Hombro">
+                                Hombro
+                            </option>
+
+                            <option value="Pierna">
+                                Pierna
+                            </option>
+
+                            <option value="Abdomen">
+                                Abdomen
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="field-error"
+                            id="goalMuscleGroupError"
+                        ></small>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="goalExercise">
+                            Ejercicio
+                        </label>
+
+                        <input
+                            id="goalExercise"
+                            type="text"
+                            maxlength="80"
+                            list="exerciseSuggestions"
+                            placeholder="Ej. Extensión de tríceps"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <datalist
+                            id="exerciseSuggestions"
+                        ></datalist>
+
+                        <small
+                            class="field-error"
+                            id="goalExerciseError"
+                        ></small>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="goalIncrease">
+                            Quiero aumentar (kg)
+                        </label>
+
+                        <input
+                            id="goalIncrease"
+                            type="number"
+                            min="0.1"
+                            step="0.1"
+                            placeholder="5"
+                            required
+                        >
+
+                        <small
+                            class="field-error"
+                            id="goalIncreaseError"
+                        ></small>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="goalDeadline">
+                            Fecha límite
+                        </label>
+
+                        <input
+                            id="goalDeadline"
+                            type="date"
+                            required
+                        >
+
+                        <small
+                            class="field-error"
+                            id="goalDeadlineError"
+                        ></small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group initial-weight-group">
+
+                    <label for="goalInitialWeight">
+                        Peso inicial (kg)
+                    </label>
+
+                    <input
+                        id="goalInitialWeight"
+                        type="number"
+                        min="0.1"
+                        step="0.1"
+                        placeholder="Se detectará automáticamente"
+                        required
+                    >
+
+                    <small
+                        class="form-hint"
+                        id="initialWeightHint"
+                    >
+                        Selecciona el grupo y escribe el ejercicio.
+                    </small>
+
+                    <small
+                        class="field-error"
+                        id="goalInitialWeightError"
+                    ></small>
+
+                </div>
+
+
+
+                <div
+                    id="goalPreview"
+                    class="goal-preview hidden"
+                ></div>
+
+
+
+                <div class="modal-actions">
+
+                    <button
+                        class="secondary-button"
+                        type="button"
+                        data-close-goal-modal
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        class="primary-button"
+                        type="submit"
+                    >
+                        Guardar meta
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+
+
+    <div
+        class="toast"
+        id="progressToast"
+    ></div>
+
+
+    <script src="progreso.js"></script>
+
+</body>
+
+</html>
