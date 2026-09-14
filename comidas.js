@@ -444,3 +444,456 @@ function toIsoDate(
     return `${year}-${month}-${formattedDay}`;
 
 }
+// ==============================
+// ASISTENTE IA DE NUTRICIÓN
+// ==============================
+
+const aiChat =
+    document.getElementById(
+        "aiChat"
+    );
+
+
+const aiChatForm =
+    document.getElementById(
+        "aiChatForm"
+    );
+
+
+const aiChatInput =
+    document.getElementById(
+        "aiChatInput"
+    );
+
+
+const aiGoalButtons =
+    document.querySelectorAll(
+        ".ai-goal-button"
+    );
+
+
+const NUTRITION_GOAL_STORAGE_KEY =
+    "gymTrackNutritionGoal";
+
+
+let selectedNutritionGoal =
+    localStorage.getItem(
+        NUTRITION_GOAL_STORAGE_KEY
+    );
+
+
+
+// ==============================
+// INICIAR CHAT
+// ==============================
+
+initializeNutritionAssistant();
+
+
+
+function initializeNutritionAssistant() {
+
+
+    // Evita errores si el chatbot
+    // no está presente en esta página.
+    if (
+        !aiChat ||
+        !aiChatForm ||
+        !aiChatInput
+    ) {
+
+        return;
+
+    }
+
+
+
+    updateNutritionGoalButtons();
+
+
+
+    aiGoalButtons.forEach(
+        (button) => {
+
+
+            button.addEventListener(
+                "click",
+                handleNutritionGoalSelection
+            );
+
+
+        }
+    );
+
+
+
+    aiChatForm.addEventListener(
+        "submit",
+        handleNutritionChatSubmit
+    );
+
+}
+
+
+
+// ==============================
+// SELECCIONAR OBJETIVO
+// ==============================
+
+function handleNutritionGoalSelection(
+    event
+) {
+
+
+    const button =
+        event.currentTarget;
+
+
+
+    selectedNutritionGoal =
+        button.dataset.goal;
+
+
+
+    localStorage.setItem(
+
+        NUTRITION_GOAL_STORAGE_KEY,
+
+        selectedNutritionGoal
+
+    );
+
+
+
+    updateNutritionGoalButtons();
+
+
+
+    addNutritionBotMessage(
+
+        `Perfecto. Tendré en cuenta que tu objetivo es ${selectedNutritionGoal.toLowerCase()}.`
+
+    );
+
+}
+
+
+
+// ==============================
+// ACTUALIZAR BOTONES
+// ==============================
+
+function updateNutritionGoalButtons() {
+
+
+    aiGoalButtons.forEach(
+        (button) => {
+
+
+            const isSelected =
+                button.dataset.goal ===
+                selectedNutritionGoal;
+
+
+
+            button.classList.toggle(
+
+                "active",
+
+                isSelected
+
+            );
+
+
+        }
+    );
+
+}
+
+
+
+// ==============================
+// ENVIAR MENSAJE
+// ==============================
+
+function handleNutritionChatSubmit(
+    event
+) {
+
+
+    event.preventDefault();
+
+
+
+    const message =
+        aiChatInput
+            .value
+            .trim();
+
+
+
+    // No enviamos mensajes vacíos.
+    if (!message) {
+
+        return;
+
+    }
+
+
+
+    addNutritionUserMessage(
+        message
+    );
+
+
+
+    // Limpiamos el input.
+    aiChatInput.value =
+        "";
+
+
+
+    aiChatInput.focus();
+
+
+
+    // De momento utilizamos una
+    // respuesta simulada.
+    simulateNutritionAiResponse(
+        message
+    );
+
+}
+
+
+
+// ==============================
+// MENSAJE DEL USUARIO
+// ==============================
+
+function addNutritionUserMessage(
+    message
+) {
+
+
+    const messageElement =
+        document.createElement(
+            "div"
+        );
+
+
+
+    messageElement.className =
+        "ai-message ai-message-user";
+
+
+
+    const contentElement =
+        document.createElement(
+            "div"
+        );
+
+
+
+    contentElement.className =
+        "ai-message-content";
+
+
+
+    const paragraph =
+        document.createElement(
+            "p"
+        );
+
+
+
+    // textContent evita que el usuario
+    // pueda insertar HTML.
+    paragraph.textContent =
+        message;
+
+
+
+    contentElement.appendChild(
+        paragraph
+    );
+
+
+
+    messageElement.appendChild(
+        contentElement
+    );
+
+
+
+    aiChat.appendChild(
+        messageElement
+    );
+
+
+
+    scrollNutritionChatToBottom();
+
+}
+
+
+
+// ==============================
+// MENSAJE DEL ASISTENTE
+// ==============================
+
+function addNutritionBotMessage(
+    message
+) {
+
+
+    const messageElement =
+        document.createElement(
+            "div"
+        );
+
+
+
+    messageElement.className =
+        "ai-message ai-message-bot";
+
+
+
+    const avatar =
+        document.createElement(
+            "span"
+        );
+
+
+
+    avatar.className =
+        "ai-avatar";
+
+
+
+    avatar.textContent =
+        "IA";
+
+
+
+    const contentElement =
+        document.createElement(
+            "div"
+        );
+
+
+
+    contentElement.className =
+        "ai-message-content";
+
+
+
+    const paragraph =
+        document.createElement(
+            "p"
+        );
+
+
+
+    paragraph.textContent =
+        message;
+
+
+
+    contentElement.appendChild(
+        paragraph
+    );
+
+
+
+    messageElement.appendChild(
+        avatar
+    );
+
+
+
+    messageElement.appendChild(
+        contentElement
+    );
+
+
+
+    aiChat.appendChild(
+        messageElement
+    );
+
+
+
+    scrollNutritionChatToBottom();
+
+}
+
+
+
+// ==============================
+// RESPUESTA TEMPORAL
+// ==============================
+
+function simulateNutritionAiResponse(
+    userMessage
+) {
+
+
+    window.setTimeout(
+        () => {
+
+
+            // Si todavía no ha elegido
+            // un objetivo.
+            if (!selectedNutritionGoal) {
+
+
+                addNutritionBotMessage(
+
+                    "Antes de recomendarte una receta, selecciona si quieres ganar masa muscular, perder grasa o mantener tu peso."
+
+                );
+
+
+                return;
+
+            }
+
+
+
+            // Respuesta provisional.
+            const response =
+
+                `He entendido que buscas algo relacionado con "${userMessage}". ` +
+
+                `Como tu objetivo es ${selectedNutritionGoal.toLowerCase()}, ` +
+
+                `cuando conectemos la IA podré proponerte una receta adaptada con ingredientes, cantidades y valores nutricionales.`;
+
+
+
+            addNutritionBotMessage(
+                response
+            );
+
+
+        },
+
+        600
+    );
+
+}
+
+
+
+// ==============================
+// BAJAR EL CHAT AUTOMÁTICAMENTE
+// ==============================
+
+function scrollNutritionChatToBottom() {
+
+
+    aiChat.scrollTop =
+        aiChat.scrollHeight;
+
+}
